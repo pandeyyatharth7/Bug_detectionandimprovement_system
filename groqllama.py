@@ -8,6 +8,7 @@ client = Groq(api_key="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"
 user_code = []
 stop_flag = False  # Flag to stop monitoring
 
+
 def send_to_ai_model(code_line):
     """
     Sends the given line of code to an AI model for analysis and correction.
