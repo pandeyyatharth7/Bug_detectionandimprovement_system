@@ -29,6 +29,7 @@ def send_to_ai_model(code_line):
     except Exception as e:
         return f"Error in AI processing: {e}"
 
+
 def highlight_error(line, corrected_line):
     """
     Highlights the corrected word with a red underline.
@@ -40,6 +41,7 @@ def highlight_error(line, corrected_line):
         print("\033[0m")  # Reset formatting after the time has passed
     else:
         print(corrected_line)
+
 
 def monitor_typing():
     """
@@ -62,6 +64,7 @@ def monitor_typing():
         user_code.append(corrected_line)
 
     print("\nFinal Corrected Code:\n" + "\n".join(user_code))
+    
 
 # Run monitoring in a separate thread
 monitor_typing()
