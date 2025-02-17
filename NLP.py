@@ -5,6 +5,7 @@ model_name = "Salesforce/codet5-base"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
+
 def analyze_code_files(local_path):
     analysis_results = []
     for root, _, files in os.walk(local_path):
@@ -36,13 +37,13 @@ def display_suggestions(suggestions):
             file_suggestions[file_path] = []
         file_suggestions[file_path].append((line_number, line, suggestion))
 
-    
     for file_path, issues in file_suggestions.items():
         print(f"File: {file_path}")
         for line_number, line, suggestion in issues:
             print(f"  Line {line_number}: {line.strip()}")
             print(f"    Suggestion: {suggestion}")
         print("\n")
+
 
 local_path = "C:/Users/Asus/Desktop/Hackathons/Makethon' 25/QuixBugs/python_testcases"
 analysis_results = analyze_code_files(local_path)
