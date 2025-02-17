@@ -29,8 +29,8 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest
+        pytest test_.py
 
     - name: Run GroqLlama
       run: |
-        python /c:/Users/Vamika/Desktop/Makeathon/Bug_detectionandimprovement_system-1/groqllama.py
+        python groqllama.py
