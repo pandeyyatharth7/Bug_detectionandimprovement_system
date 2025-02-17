@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: AI Code Review CI/CD
 
 on:
   push:
@@ -9,28 +9,37 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install groq
-        pip install pytest
+      - name: Install Dependencies Manually
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install groq flake8 pytest time  # Install required dependencies
 
-    - name: Run tests
-      run: |
-        pytest test_.py
+      - name: Lint Code (flake8)
+        run: |
+          source venv/bin/activate
+          flake8 --ignore=E501 *.py
 
-    - name: Run GroqLlama
-      run: |
-        python groqllama.py
+      - name: Run Tests
+        run: |
+          source venv/bin/activate
+          pytest tests/
+
+      - name: Deploy (Optional)
+        if: success()
+        run: |
+          echo "Deploying AI code review agent..."
+          # Add deployment steps (Docker, serverless function, etc.)
