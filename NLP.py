@@ -19,6 +19,7 @@ def analyze_code_files(local_path):
                         analysis_results.append((file_path, line_number, line, outputs.logits))
     return analysis_results
 
+
 def suggest_improvements(analysis_results):
     suggestions = []
     for file_path, line_number, line, logits in analysis_results:
@@ -27,12 +28,14 @@ def suggest_improvements(analysis_results):
             suggestions.append((file_path, line_number, line, "Possible error detected. Consider refactoring this line."))
     return suggestions
 
+
 def display_suggestions(suggestions):
     file_suggestions = {}
     for file_path, line_number, line, suggestion in suggestions:
         if file_path not in file_suggestions:
             file_suggestions[file_path] = []
         file_suggestions[file_path].append((line_number, line, suggestion))
+
     
     for file_path, issues in file_suggestions.items():
         print(f"File: {file_path}")
