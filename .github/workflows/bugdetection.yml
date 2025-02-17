@@ -1,17 +1,10 @@
 name: Code Review System CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -25,7 +18,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install transformers
+        pip install torch  # Add this line to install PyTorch
 
-    - name: Run code analysis
-      run: |
-        python NLP.py
+    - name: Run script
+      run: python NLP.py
