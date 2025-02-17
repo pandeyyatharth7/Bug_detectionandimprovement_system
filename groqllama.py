@@ -50,7 +50,7 @@ def monitor_typing():
     """
     global stop_flag
     print("\nReal-time Python Code Error Detector (Type 'exit' to stop):\n")
-    
+
     while not stop_flag:
         line = input(">>> ")  # Capture user input
         if line.lower() == "exit":
@@ -65,7 +65,7 @@ def monitor_typing():
         user_code.append(corrected_line)
 
     print("\nFinal Corrected Code:\n" + "\n".join(user_code))
-    
+
 
 # Run monitoring in a separate thread
 monitor_typing()
