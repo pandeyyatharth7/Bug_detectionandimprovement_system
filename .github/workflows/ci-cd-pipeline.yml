@@ -26,12 +26,12 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pip install groq flake8 pytest  # Install required dependencies
+          pip install groq pylint pytest  # Install required dependencies
 
-      - name: Lint Code (flake8)
+      - name: Lint Code (pylint)
         run: |
           source venv/bin/activate
-          flake8 --ignore=E501 *.py
+          pylint *.py
 
       - name: Run Tests
         run: |
